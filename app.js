@@ -136,7 +136,7 @@ function displayMessage(text, senderId, dateObj) {
     messageDiv.classList.add(isMine ? 'sent' : 'received');
 
     const timeStr = dateObj ? dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Just now';
-    const senderName = isMine ? 'You ❤️' : 'Her 💖';
+    const senderName = isMine ? 'Prathish ❤️' : 'Sradha 💖';
 
     messageDiv.innerHTML = `
         <p>${text}</p>
