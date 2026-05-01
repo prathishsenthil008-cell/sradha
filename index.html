@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Confession Screen -->
+        <div id="confession-screen" class="screen active">
+            <div class="glass-card">
+                <h1 class="romantic-title">I made this for you...</h1>
+                <div class="letter-content">
+                    <p>Hey...</p>
+                    <p>I've been holding onto these words for a while now, and I couldn't find the perfect way to say them.</p>
+                    <p>Every time we talk, you make my day a little brighter. You have this amazing way of making me smile without even trying.</p>
+                    <p>I didn't want to just send a simple text, because you deserve more than that. So I made this little place just for us.</p>
+                    <h2 class="proposal">Will you be mine? 🥺</h2>
+                </div>
+                <button id="start-chat-btn" class="primary-btn">
+                    Talk to me ❤️
+                </button>
+            </div>
+            <!-- Floating Hearts Background -->
+            <div class="hearts-bg"></div>
+        </div>
+
+        <!-- Chat Screen -->
+        <div id="chat-screen" class="screen">
+            <div class="chat-container glass-card">
+                <div class="chat-header">
+                    <h2>Our Private Space 💖</h2>
+                    <p class="status">Online</p>
+                </div>
+                
+                <div id="chat-messages" class="chat-messages">
+                    <!-- Messages will appear here -->
+                    <div class="system-message">
+                        <p>Now... I just want to talk to you ❤️</p>
+                    </div>
+                </div>
+
+                <form id="chat-form" class="chat-input-area">
+                    <input type="text" id="message-input" placeholder="Type your message here..." required autocomplete="off">
+                    <button type="submit" id="send-btn">Send 💌</button>
+                </form>
+            </div>
+            <div class="hearts-bg"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Modular) via CDN -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
