@@ -61,6 +61,13 @@ startChatBtn.addEventListener('click', () => {
     }, 800); // Wait for fade out
 });
 
+// Call Buttons
+document.querySelectorAll('.fake-call').forEach(btn => {
+    btn.addEventListener('click', () => {
+        alert("I want to see your face... call me for real? ❤️");
+    });
+});
+
 // Create Floating Hearts
 function createHearts() {
     const containers = document.querySelectorAll('.hearts-bg');
@@ -131,6 +138,12 @@ function setupChatListener() {
 function displayMessage(text, senderId, dateObj) {
     const isMine = senderId === mySessionId;
     
+    // Play sound if it's a new message
+    if (dateObj && (new Date() - dateObj) < 5000) {
+        if (isMine) document.getElementById('send-sound').play().catch(e => {});
+        else document.getElementById('receive-sound').play().catch(e => {});
+    }
+
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
     messageDiv.classList.add(isMine ? 'sent' : 'received');

@@ -17,7 +17,7 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+    background: url('our_picture.jpg') no-repeat center center fixed;
     background-size: cover;
     color: var(--text-dark);
     min-height: 100vh;
@@ -25,6 +25,24 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden; /* For floating hearts */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Soft dark overlay so your faces are visible but text is readable */
+    z-index: 0;
+}
+
+#app {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
 }
 
 /* Screen Management */
@@ -119,7 +137,7 @@ body {
     box-shadow: 0 6px 20px rgba(255, 75, 130, 0.6);
 }
 
-/* Chat UI Styles */
+/* Chat UI Styles - WhatsApp Theme */
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -128,40 +146,51 @@ body {
     padding: 0;
     overflow: hidden;
     animation: none; /* No floating for chat */
+    border-radius: 10px;
+    background: url('our_picture.jpg') center center/cover no-repeat;
+    position: relative;
+    border: none;
+}
+
+/* Add a dark overlay only to the chat container to make messages pop */
+.chat-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .chat-header {
-    background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+    background: #008069; /* WhatsApp Green */
     color: white;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 2;
 }
 
 .chat-header h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
+    font-weight: 600;
 }
 
 .status {
-    font-size: 0.9rem;
     opacity: 0.9;
 }
 
 .status::before {
-    content: "●";
-    color: #4cd137;
-    margin-right: 5px;
+    display: none;
 }
 
 .chat-messages {
     flex: 1;
-    padding: 20px;
+    padding: 20px 15px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    background: rgba(255,255,255,0.4);
+    gap: 8px;
+    z-index: 2;
 }
 
 /* Scrollbar styling */
@@ -169,102 +198,112 @@ body {
     width: 6px;
 }
 .chat-messages::-webkit-scrollbar-thumb {
-    background: var(--primary-pink);
+    background: rgba(255,255,255,0.2);
     border-radius: 10px;
 }
 
 /* Messages */
 .message {
-    max-width: 75%;
-    padding: 12px 16px;
-    border-radius: 20px;
-    font-size: 1rem;
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
     line-height: 1.4;
     position: relative;
-    animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    animation: none;
+    font-family: 'Outfit', sans-serif;
 }
 
 .message.sent {
     align-self: flex-end;
-    background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
-    color: white;
-    border-bottom-right-radius: 5px;
+    background: #e7ffdb; /* WhatsApp sent green */
+    color: #111;
+    border-top-right-radius: 0;
 }
 
 .message.received {
     align-self: flex-start;
-    background: white;
-    color: var(--text-dark);
-    border-bottom-left-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background: #ffffff; /* WhatsApp received white */
+    color: #111;
+    border-top-left-radius: 0;
 }
 
 .system-message {
     align-self: center;
-    background: rgba(255, 75, 130, 0.1);
-    color: var(--dark-pink);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    color: #444;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
     margin: 10px 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 .msg-info {
-    font-size: 0.7rem;
-    opacity: 0.7;
-    margin-top: 5px;
-    display: block;
-    text-align: right;
+    font-size: 0.65rem;
+    color: #667781;
+    margin-top: 4px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
 }
 
 .message.received .msg-info {
-    text-align: left;
+    justify-content: flex-end;
+}
+
+.message.sent .msg-info::after {
+    content: '✓✓';
+    color: #53bdeb; /* WhatsApp read receipt */
+    font-size: 0.8rem;
+    letter-spacing: -2px;
 }
 
 /* Chat Input */
 .chat-input-area {
     display: flex;
-    padding: 15px;
-    background: white;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 10px;
+    background: #f0f2f5;
+    z-index: 2;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 #message-input {
     flex: 1;
     padding: 12px 20px;
-    border: 2px solid var(--light-pink);
-    border-radius: 30px;
+    border: none;
+    border-radius: 24px;
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
     outline: none;
-    transition: border 0.3s;
-}
-
-#message-input:focus {
-    border-color: var(--primary-pink);
+    background: #ffffff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 }
 
 #send-btn {
-    background: var(--primary-pink);
+    background: #00a884;
     color: white;
     border: none;
-    padding: 0 25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     margin-left: 10px;
-    border-radius: 30px;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 #send-btn:hover {
-    background: var(--dark-pink);
+    background: #008069;
     transform: scale(1.05);
 }
 
