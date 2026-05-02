@@ -65,7 +65,8 @@ startChatBtn.addEventListener('click', () => {
 // Call Buttons
 document.querySelectorAll('.fake-call').forEach(btn => {
     btn.addEventListener('click', () => {
-        alert("I want to see your face... call me for real? ❤️");
+        // Triggers the phone to call the number
+        window.location.href = "tel:9944293646";
     });
 });
 
