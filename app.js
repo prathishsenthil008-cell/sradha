@@ -50,16 +50,10 @@ if (!mySessionId) {
     localStorage.setItem('sessionId', mySessionId);
 }
 
-// Switch Screens
+// Switch Screens (Now directly calls the phone)
 startChatBtn.addEventListener('click', () => {
-    confessionScreen.classList.remove('active');
-    setTimeout(() => {
-        chatScreen.classList.add('active');
-        scrollToBottom();
-        if (db) {
-            setupChatListener();
-        }
-    }, 800); // Wait for fade out
+    // This will instantly open the dialer and call the number
+    window.location.href = "tel:9944293646";
 });
 
 // Call Buttons
