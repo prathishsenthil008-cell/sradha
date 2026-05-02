@@ -17,7 +17,7 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    background: url('our_picture.jpg') no-repeat center center fixed;
+    background: url('our_picture.jpg.jpeg') no-repeat center center fixed;
     background-size: cover;
     color: var(--text-dark);
     min-height: 100vh;
@@ -158,7 +158,7 @@ body::before {
     overflow: hidden;
     animation: none; /* No floating for chat */
     border-radius: 10px;
-    background: url('our_picture.jpg') center center/cover no-repeat;
+    background: url('our_picture.jpg.jpeg') center center/cover no-repeat;
     position: relative;
     border: none;
 }
