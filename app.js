@@ -11,8 +11,8 @@ const firebaseConfig = {
   projectId: "sradharajiv-acfc9",
   storageBucket: "sradharajiv-acfc9.firebasestorage.app",
   messagingSenderId: "466188020051",
-  appId: "1:466188020051:web:7c6bf4dc5c7d199ea659a6",
-  measurementId: "G-BF6E3XFNZL"
+  appId: "1:466188020051:web:38b9108056df83c1a659a6",
+  measurementId: "G-466KQ7RQ80"
 };
 
 let db = null;
