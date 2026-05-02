@@ -76,11 +76,22 @@ body::before {
     padding: 40px;
     width: 100%;
     max-width: 500px;
+    max-height: 90vh; /* Prevents it from going off-screen */
+    overflow-y: auto; /* Allows scrolling inside the card if text is too long */
     box-shadow: 0 8px 32px 0 var(--glass-shadow);
     text-align: center;
     position: relative;
     z-index: 2;
     animation: floatCard 6s ease-in-out infinite;
+}
+
+/* Custom scrollbar for the card */
+.glass-card::-webkit-scrollbar {
+    width: 6px;
+}
+.glass-card::-webkit-scrollbar-thumb {
+    background: var(--primary-pink);
+    border-radius: 10px;
 }
 
 @keyframes floatCard {
